@@ -13,7 +13,6 @@ namespace MadHotspotV2.Application.Repositories
         IQueryable<T> GetWhere(Expression<Func<T, bool>> method);
         IQueryable<T> GetCompanyData(string id);
         Task<T> GetSingleAsync(Expression<Func<T, bool>> method);
-        Task<T> GetByIdAsync(string id);
-        
+        Task<T> GetByIdAsync(string id);        
     }
 }

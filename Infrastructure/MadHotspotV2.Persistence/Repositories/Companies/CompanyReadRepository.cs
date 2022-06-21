@@ -11,7 +11,6 @@ namespace MadHotspotV2.Persistence.Repositories.Companies
     {
         public CompanyReadRepository(MadHotspotV2DbContext context) : base(context)
         {
-
         }
     }
 }

@@ -15,7 +15,6 @@ namespace MadHotspotV2.Persistence
                 ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
                 configurationBuilder.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/MadHotspotV2.WebUI"));
                 configurationBuilder.AddJsonFile("appsettings.json");
-
                 return configurationBuilder.Build().GetConnectionString("MadHotspotV2SqlConnection");
             }
         }

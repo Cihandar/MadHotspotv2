@@ -1,3 +1,6 @@
+using FluentValidation.AspNetCore;
+using MadHotspotV2.Application.Repositories.Mappers;
+using MadHotspotV2.Application.Repositories.Validators.Companies;
 using MadHotspotV2.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MadHotspotV2.WebUI
@@ -26,6 +30,8 @@ namespace MadHotspotV2.WebUI
         {
             services.AddRazorPages();
             services.AddPersistenceServices(); //Persistence IOC
+            services.AddControllers().AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateCompanyValidator>());
+            services.AddAutoMapper(new Assembly[] { typeof(AutoMapperProfile).GetTypeInfo().Assembly });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
