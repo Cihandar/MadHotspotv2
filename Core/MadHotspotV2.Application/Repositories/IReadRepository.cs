@@ -9,10 +9,9 @@ namespace MadHotspotV2.Application.Repositories
 {
     public interface IReadRepository<T> : IRepository<T> where T : class
     {
-        IQueryable<T> GetAll();
-        IQueryable<T> GetWhere(Expression<Func<T, bool>> method);
-        IQueryable<T> GetCompanyData(string id);
-        Task<T> GetSingleAsync(Expression<Func<T, bool>> method);
-        Task<T> GetByIdAsync(string id);        
+        IQueryable<T> GetAll(bool Tracking = true);
+        IQueryable<T> GetWhere(Expression<Func<T, bool>> method, bool Tracking = true);
+        Task<T> GetSingleAsync(Expression<Func<T, bool>> method, bool Tracking = true);
+        Task<T> GetByIdAsync(string id, bool Tracking = true);        
     }
 }

@@ -1,6 +1,6 @@
 using FluentValidation.AspNetCore;
-using MadHotspotV2.Application.Repositories.Mappers;
-using MadHotspotV2.Application.Repositories.Validators.Companies;
+using MadHotspotV2.Application.Mappers;
+using MadHotspotV2.Application.Validators.Companies;
 using MadHotspotV2.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

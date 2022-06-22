@@ -22,20 +22,34 @@ namespace MadHotspotV2.Persistence.Repositories
 
         public DbSet<T> Table => _context.Set<T>();
 
-        public IQueryable<T> GetAll()
-            => Table;
+        public IQueryable<T> GetAll(bool Tracking)
+        {
+            var query = Table.AsQueryable();
+            if (!Tracking) query = Table.AsNoTracking();
+            return Table;
+        }
 
-        public IQueryable<T> GetWhere(Expression<Func<T, bool>> method)
-            => Table.Where(method);
 
-        public IQueryable<T> GetCompanyData(string id)
-            => Table.Where(data => data.CompanyId == Guid.Parse(id));
+        public IQueryable<T> GetWhere(Expression<Func<T, bool>> method, bool Tracking)
+        {
+            var query = Table.Where(method);
+            if (!Tracking) query = query.AsNoTracking();
+            return query;
+        }
 
-        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> method)
-            => await Table.FirstOrDefaultAsync(method);
+        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> method, bool Tracking)
+        {
+            var query = Table.AsQueryable();
+            if (!Tracking) query.AsNoTracking();
+            return await query.FirstOrDefaultAsync(method);
+        }
 
-        public Task<T> GetByIdAsync(string id)
-            => Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
+        public async Task<T> GetByIdAsync(string id, bool Tracking)
+        {
+            var query = Table.AsQueryable();
+            if (!Tracking) query.AsNoTracking();
+            return await query.FirstOrDefaultAsync(x => x.Id == Guid.Parse(id));
+        }
 
 
     }
