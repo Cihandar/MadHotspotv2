@@ -51,7 +51,7 @@ namespace MadHotspotV2.Application.Commands
 
         public async Task<bool> Update(SettingsRequestDto datas)
         {
-            var setting = await _readRepository.GetByIdAsync(datas.CompanyId.ToString());
+            var setting = await _readRepository.GetByIdAsync(datas.CompanyId);
 
             setting.DailyPriceEUR = datas.DailyPriceEUR;
             setting.DailyPriceTL = datas.DailyPriceTL;
