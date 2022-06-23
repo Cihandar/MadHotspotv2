@@ -44,11 +44,11 @@ namespace MadHotspotV2.Persistence.Repositories
             return await query.FirstOrDefaultAsync(method);
         }
 
-        public async Task<T> GetByIdAsync(string id, bool Tracking)
+        public async Task<T> GetByIdAsync(Guid id, bool Tracking)
         {
             var query = Table.AsQueryable();
             if (!Tracking) query.AsNoTracking();
-            return await query.FirstOrDefaultAsync(x => x.Id == Guid.Parse(id));
+            return await query.FirstOrDefaultAsync(x => x.Id == id);
         }
 
 

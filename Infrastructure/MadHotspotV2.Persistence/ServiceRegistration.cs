@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using MadHotspotV2.Persistence.Repositories.Companies;
 using MadHotspotV2.Application.Repositories.Companies;
+using MadHotspotV2.Application.Interfaces;
+using MadHotspotV2.Application.Commands;
+using MadHotspotV2.Application.Queries;
 
 namespace MadHotspotV2.Persistence
 {
@@ -18,6 +21,8 @@ namespace MadHotspotV2.Persistence
             services.AddDbContext<MadHotspotV2DbContext>(options => options.UseSqlServer(Configuration.ConnectionString));
             services.AddScoped<ICompanyReadRepository, CompanyReadRepository>();
             services.AddScoped<ICompanyWriteRepository, CompanyWriteRepository>();
+            services.AddScoped<IAuthCommand, AuthCommand>();
+            services.AddScoped<ICompanyQuery, CompanyQuery>();
         }
     }
 }
