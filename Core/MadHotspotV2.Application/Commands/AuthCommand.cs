@@ -38,6 +38,7 @@ namespace MadHotspotV2.Application.Commands
             {
 
             }
+            return null;
         }
 
         public void RegisterAsync(AppUserRequestDto model)

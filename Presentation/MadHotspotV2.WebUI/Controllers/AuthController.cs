@@ -26,7 +26,7 @@ namespace MadHotspotV2.WebUI.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult> Login(LoginRequestDto loginDto)
         {
-
+            return null;
         }
     }
 }
