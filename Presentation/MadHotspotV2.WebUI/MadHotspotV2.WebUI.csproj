@@ -9,8 +9,4 @@
     <ProjectReference Include="..\..\Infrastructure\MadHotspotV2.Persistence\MadHotspotV2.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
