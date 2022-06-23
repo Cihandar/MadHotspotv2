@@ -1,5 +1,6 @@
 ﻿using MadHotspotV2.Application.Dtos.Base;
 using MadHotspotV2.Application.Dtos.Settings;
+using MadHotspotV2.Application.Interfaces.Commands;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace MadHotspotV2.WebUI.Controllers
 {
-    public class AyarlarController : Controller
+    public class AyarlarController : BaseController
     {
-
-        public AyarlarController()
+        private ISettingCommand _settingCommand;
+        public AyarlarController(ISettingCommand settingCommand)
         {
+            _settingCommand = settingCommand;
         }
 
         public IActionResult Index()
@@ -35,28 +37,8 @@ namespace MadHotspotV2.WebUI.Controllers
 
             try
             {
-            //    var ayar = await context.H_Ayarlar.FirstOrDefaultAsync(x => x.FirmaId == FirmaId);
-
-            //    ayar.GunlukFiyatEURO = ayarlar.GunlukFiyatEURO;
-            //    ayar.GunlukFiyatTL = ayarlar.GunlukFiyatTL;
-            //    ayar.GunlukFiyatUSD = ayarlar.GunlukFiyatUSD;
-            //    ayar.MikrotikIp = ayarlar.MikrotikIp;
-            //    ayar.MikrotikPort = ayarlar.MikrotikPort;
-            //    ayar.MikrotikUser = ayarlar.MikrotikUser;
-            //    if (!string.IsNullOrEmpty(ayarlar.MikrotikPass)) ayar.MikrotikPass = ayarlar.MikrotikPass;
-            //    ayar.MikrotikDefaultSifre = ayarlar.MikrotikDefaultSifre;
-            //    ayar.SinirsizAktif = ayarlar.SinirsizAktif;
-            //    ayar.AdSoyadZorunlu = ayarlar.AdSoyadZorunlu;
-            //    ayar.MikrotikHotspotAdi = ayarlar.MikrotikHotspotAdi;
-            //    ayar.MikrotikProfilAdi = ayarlar.MikrotikProfilAdi;
-            //    ayar.IadeAktif = ayarlar.IadeAktif;
-            //    ayar.TarifeAktif = ayarlar.TarifeAktif;
-            //    ayar.DiaEntegrasyonAktif = ayarlar.DiaEntegrasyonAktif;
-            //    ayar.DiaUrl = ayarlar.DiaUrl;
-            //    //TODO : DUGHAN
-            //    context.SaveChanges();
-
-                return Ok(new Response { Success = true, Message = "Kayıt Başarılı" });
+                var result = await _settingCommand.Update(ayarlar);
+                return Ok(new Response { Success = result, Message = "Kayıt Başarılı" });
 
             }
             catch (Exception)

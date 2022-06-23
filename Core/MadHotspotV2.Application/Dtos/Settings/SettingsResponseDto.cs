@@ -4,11 +4,9 @@ using System.Text;
 
 namespace MadHotspotV2.Application.Dtos.Settings
 {
-    public class SettingsRequestDto
+    public class SettingsResponseDto
     {
         public Guid Id { get; set; }
-        public Guid CompanyId { get; set; }
-        public int CompanyCode { get; set; }
         public bool UnlimitedActive { get; set; } //Sınırsız Aktif
         public double DailyPriceTL { get; set; }
         public double DailyPriceUSD { get; set; }
